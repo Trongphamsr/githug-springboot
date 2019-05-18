@@ -1,0 +1,40 @@
+# DATABASE
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://10.16.12.55:3306/dbmatsunobot
+    username: root
+    password: fsoft@12345
+    
+# JPA / HIBERNATE
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+# PAGGING
+  data:
+    web:
+      pageable:
+        default-page-size: 50
+          
+# DEVTOOL
+  devtools:
+      restart:
+          enabled: true
+
+# PORT
+server:
+  port: 9191
+
+# LOGGING
+logging:
+  level:
+    root: 
+  file: logs/application.log
+  pattern:
+    console: "%d{dd/MM/yyyy HH:mm:ss.SSS} %5p %t %c{2}:%L - %m%n"
+

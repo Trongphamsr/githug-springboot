@@ -1,0 +1,12 @@
+# PROFILES
+spring:
+    profiles:
+        active: "@spring.profiles.active@"
+# INTERNATIONALIZATION (MessageSourceAutoConfiguration)
+    messages:
+        basename: messages/messages
+        encoding: UTF-8
+# JACKSON (JacksonProperties)
+    jackson:
+       serialization:
+           INDENT_OUTPUT: true       

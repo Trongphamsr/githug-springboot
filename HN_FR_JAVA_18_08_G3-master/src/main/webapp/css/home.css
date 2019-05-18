@@ -1,0 +1,88 @@
+#myCarousel .carousel-control {
+    background: none;
+}
+
+#myCarousel {
+    margin: 2rem auto;
+    height: 330px;
+}
+
+ #myCarousel .carousel-inner{
+    height: 100%;
+}
+
+#myCarousel .carousel-inner .item{
+    height: 100%;
+}
+
+#myCarousel .carousel-control {
+    line-height: 330px;
+}
+
+#myCarousel .carousel-control span i {
+    font-size: 3rem;
+}
+
+#myCarousel .carousel-indicators li {
+    background-color: black;
+}
+
+#myCarousel .carousel-indicators .active {
+    width: 12px;
+    height: 12px;
+    margin: 0;
+    background-color: red;
+}
+p#new-product-tile {
+    font-size: 20px;
+    display: inline-block;
+    border: 1px solid #0000001a;
+    transition: all 0.2s;
+    padding: 8px 5px;
+}
+p#new-product-tile:hover{
+    border: 1px solid #d43838;
+    transform: scale(1.05,1.05);
+    cursor: pointer;
+}
+
+.div-grid-product{
+	position: relative;
+}
+.grid-product{
+	margin-top:20px;
+	min-height:800px;
+	position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-start;
+    transition: all 0.3s;
+}
+.div-grid-product .img-gif{
+	position: absolute;
+	top:40%;
+	left:40%;
+	display:none;
+	z-index:100;
+}
+.grid-product .lam-mo{
+	position: absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background-color:black;
+	opacity:0;
+	z-index:-1;
+}
+.grid-product .product{
+    width: 25%;
+    max-height:460px;
+}
+.product{
+    min-width: 200px;
+    margin:0;
+}
+.grid-product .product .product-body{
+	background-color:none;
+}

@@ -1,0 +1,45 @@
+.section {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+#newsletter.section {
+    border-top: 0px solid #E4E7ED ! important;
+    border-bottom: 3px solid #D10024;
+    margin-top: 30px;
+}
+
+.fa fa-shopping-cart {
+    color: aqua;
+}
+
+/* .col-sm-10.my-auto {
+    transform: translateY(50%);
+}*/
+.data-center{
+    transform: translateY(30%)
+} 
+table thead {
+    border: 1px solid #ccc;
+    background: #888888;
+    color: #fff;
+}
+.total-price{
+   color: #D10024;
+   font-size: 1.5em;
+}
+table tfoot {
+   margin-top: 20px !important;
+}
+td.NoneDisplay {
+  display: none;
+}
+th.NoneDisplay {
+  display: none;
+}
+.colorOption_3imj{
+	width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 5px;
+    border: .2rem solid #e8e8e8;
+}

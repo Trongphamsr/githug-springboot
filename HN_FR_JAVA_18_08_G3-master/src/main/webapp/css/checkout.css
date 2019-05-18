@@ -1,0 +1,35 @@
+.payment {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+.card .card-body .tab-content .tab-pane .subscribe {
+	display: inline-block;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 40px;
+    color: #FFF;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+    -webkit-transition: 0.2s all;
+    transition: 0.2s all;
+}
+
+label.error {
+      color: red;
+}
+
+#continue-shop {
+  text-decoration:none;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  background: #fff;
+  color: DodgerBlue;
+}
+
+#continue-shop:hover {
+  background-color: DodgerBlue;  
+  color: #fff;
+}
+
+

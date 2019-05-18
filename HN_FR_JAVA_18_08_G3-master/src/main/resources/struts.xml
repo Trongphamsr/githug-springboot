@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+	<constant name="struts.devMode" value="true" />
+
+	<package name="sercurity" extends="struts-default">
+		<interceptors>
+			<interceptor name="authentication"
+				class="com.fsoft.project.interceptor.Authentication" />
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="authentication" />
+				<interceptor-ref name="defaultStack">
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="myStack" />
+		<global-results>
+			<result name="FAIL">/page/login.jsp</result>
+		</global-results>
+		<action name="admin*">
+			<result name="SUCCESS_ADMIN">/admin/admin.jsp</result>
+			<result name="SUCCESS_MEMBER" type="redirect">home</result>
+		</action>
+		<action name="confirm-checkout"
+			class="com.fsoft.project.action.CheckoutAction">
+			<result type="redirect">checkout</result>
+			<result name="FAIL">/page/login.jsp</result>
+		</action>
+	</package>
+
+	<package name="default" extends="struts-default">
+		<action name="">
+			<result type="redirect">home</result>
+		</action>
+		<action name="checkout"
+			class="com.fsoft.project.action.CheckoutAction">
+			<result>/page/checkout.jsp</result>
+		</action>
+		<action name="home" class="com.fsoft.project.action.HomeAction">
+			<result>/page/index.jsp</result>
+		</action>
+		<action name="product"
+			class="com.fsoft.project.action.ProductAction">
+			<result>/page/product.jsp</result>
+		</action>
+		<action name="searchProduct"
+			class="com.fsoft.project.action.HomeAction"
+			method="listProductByValue">
+			<result>/page/index.jsp</result>
+		</action>
+
+		<action name="shopping-cart"
+			class="com.fsoft.project.action.ShoppingCartAction">
+			<result name="SUCCESS">/page/shopping-cart.jsp</result>
+		</action>
+
+		<action name="continue-shopping"
+			class="com.fsoft.project.action.HomeAction">
+			<result>/page/index.jsp</result>
+		</action>
+
+		<action name="logout"
+			class="com.fsoft.project.action.LogoutAction">
+			<result name="success" type="redirect">page/login.jsp</result>
+			<result name="input" type="redirect">home</result>
+		</action>
+
+		<action name="myaccount"
+			class="com.fsoft.project.action.ProfileAction">
+			<result>/page/edit-profile.jsp</result>
+		</action>
+		<!-- admin -->
+		<action name="idCategory_ManuFacturer"
+			class="com.fsoft.project.action.CategoryAction"
+			method="idCategory_ManuFacturer">
+			<result name="ID_CATEGORY_MANUFACTURER">/admin/addProduct.jsp</result>
+		</action>
+
+		<action name="admin_home"
+			class="com.fsoft.project.action.AdminAction" method="admin_home">
+			<result name="ADMIN_HOME">/admin/admin.jsp</result>
+		</action>
+
+		<action name="addProduct"
+			class="com.fsoft.project.action.ProductAction" method="addProduct">
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">2097152</param>
+
+				<param name="allowedTypes">
+					image/png,image/gif,image/jpeg,image/pjpeg
+				</param>
+			</interceptor-ref>
+
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="ADD_PRODUCT" type="redirect">allProduct</result>
+		</action>
+
+
+		<action name="allProduct"
+			class="com.fsoft.project.action.ProductAction" method="allProduct">
+			<result name="ALL_PRODUCT">/admin/allProduct.jsp</result>
+		</action>
+
+
+		<action name="fetchProduct"
+			class="com.fsoft.project.action.ProductAction" method="fetchProduct">
+			<result name="UPDATE_PRODUCT">/admin/updateProduct.jsp</result>
+		</action>
+
+		<action name="updateProduct"
+			class="com.fsoft.project.action.ProductAction" method="updateProduct">
+			<result name="UPDATE_PRODUCT" type="redirect">allProduct</result>
+		</action>
+
+
+		<action name="deleteProduct"
+			class="com.fsoft.project.action.ProductAction" method="deleteProduct">
+			<result name="DELETE_PRODUCT" type="redirect">allProduct</result>
+		</action>
+
+		<!-- /admin -->
+	</package>
+
+	<package name="json" extends="json-default">
+		<interceptors>
+			<interceptor name="authentication"
+				class="com.fsoft.project.interceptor.Authentication" />
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="authentication" />
+				<interceptor-ref name="defaultStack">
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<action name="getListProductAction"
+			class="com.fsoft.project.action.HomeAction" method="listProduct">
+			<result type="json"></result>
+		</action>
+
+		<action name="loadProductByValueAction"
+			class="com.fsoft.project.action.HomeAction"
+			method="loadListProductByValue">
+			<result type="json"></result>
+		</action>
+
+		<action name="addProductToSessionAction"
+			class="com.fsoft.project.action.SessionAction"
+			method="addProductToSession">
+			<result type="json"></result>
+		</action>
+		<action name="searchProductByValue"
+			class="com.fsoft.project.action.SearchProductAction"
+			method="searchProductByValue">
+			<result type="json"></result>
+		</action>
+
+		<action name="editNumberProduct"
+			class="com.fsoft.project.action.ShoppingCartAction"
+			method="editNumberProduct">
+			<result type="json"></result>
+		</action>
+		<action name="removeProduct"
+			class="com.fsoft.project.action.ShoppingCartAction"
+			method="removeProduct">
+			<result type="json"></result>
+		</action>
+		<action name="getNumberProduct"
+			class="com.fsoft.project.action.SessionAction"
+			method="getNumberProduct">
+			<result type="json"></result>
+		</action>
+		<action name="getMember"
+			class="com.fsoft.project.action.LoginAction" method="getMember">
+			<result type="json"></result>
+		</action>
+		<action name="login"
+			class="com.fsoft.project.action.LoginAction">
+			<result name="SUCCESS_ADMIN" type="json"></result>
+			<result name="SUCCESS_MEMBER" type="json"></result>
+			<result name="FAIL" type="json"></result>
+			<result name="MEMBER_INDEX" type="json"></result>
+			<result name="MEMBER_PRODUCT_DETAIL" type="json"></result>
+			<result name="MEMBER_SHOPPING_CART" type="json"></result>
+			<result name="MEMBER_CHECKOUT" type="json"></result>
+		</action>
+		<action name="update-profile"
+			class="com.fsoft.project.action.ProfileAction" method="updateProfile">
+			<result type="json"></result>
+		</action>
+		<action name="confirm-payment"
+			class="com.fsoft.project.action.CheckoutAction"
+			method="confirmPayment">
+			<result type="json"></result>
+		</action>
+		<!-- admin -->
+		<action name="registerMember"
+			class="com.fsoft.project.action.RegisterMemberAction"
+			method="registerMember">
+			<result type="json"></result>
+		</action>
+
+
+		<!-- end -->
+
+		<!-- add category -->
+		<action name="addCategory"
+			class="com.fsoft.project.action.ManagementCategoryAction"
+			method="addCategory">
+			<result name="ADD_CATEGORY" type="json"></result>
+		</action>
+
+
+
+
+		<action name="allCategory"
+			class="com.fsoft.project.action.ManagementCategoryAction"
+			method="allCategory">
+			<result name="ALL_CATEGORY" type="json"></result>
+		</action>
+
+		<action name="updateCategory"
+			class="com.fsoft.project.action.ManagementCategoryAction"
+			method="updateCategory">
+			<result name="UPDATE_CATEGORY" type="json"></result>
+		</action>
+
+		<action name="deleteCategory"
+			class="com.fsoft.project.action.ManagementCategoryAction"
+			method="deleteCategory">
+			<result name="DELETE_CATEGORY" type="json"></result>
+		</action>
+
+		<!-- end -->
+
+
+		<!-- add company -->
+
+		<action name="addManuFacturer"
+			class="com.fsoft.project.action.ManagementManuFacturerAction"
+			method="addManuFacturer">
+			<result name="ADD_MANUFACTURER" type="json"></result>
+		</action>
+
+		<action name="allManuFacturer"
+			class="com.fsoft.project.action.ManagementManuFacturerAction"
+			method="allManuFacturer">
+			<result name="ALL_MANUFACTURER" type="json"></result>
+		</action>
+
+		<action name="updateManuFacturer"
+			class="com.fsoft.project.action.ManagementManuFacturerAction"
+			method="updateManuFacturer">
+			<result name="UPDATE_MANUFACTURER" type="json"></result>
+		</action>
+
+		<action name="deleteManuFacturer"
+			class="com.fsoft.project.action.ManagementManuFacturerAction"
+			method="deleteManuFacturer">
+			<result name="DELETE_MANUFACTURER" type="json"></result>
+		</action>
+
+		<!-- end -->
+		<!-- /admin -->
+	</package>
+</struts>
